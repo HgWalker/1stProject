@@ -1,0 +1,303 @@
+﻿@page "/tickets"
+
+<h3>Tickets</h3>
+<p>Please enter your first and last names, a mailing address to receive your tickets at, a valid credit card number to pay with, as well as both a phone number, and a email address for us to contact you in case necessary</p>
+
+<!--Allows user to input personal information-->
+<p>First Name:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="firstName"></InputText></EditForm>
+<br />
+<p>Last Name:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="lastName"></InputText></EditForm>
+<br />
+<p>Mailing Address:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="Address"></InputText></EditForm>
+<br />
+<p>Email:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="Email"></InputText></EditForm>
+<br />
+<p>Phone Number:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="PhoneNumber"></InputText></EditForm>
+<br />
+<p>Credit Card Number:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="CreditCard"></InputText></EditForm>
+
+<br />
+<br />
+
+<p>Tickets are $4.55, we have 50 seats so each time of each will only have 50 tickets avaliable</p>
+
+<!-- Determines what date their ticket will be for-->
+<p>Please select the day you would like to attend</p>
+<button class="btn btn-primary" @onclick="SetMonday">Monday, November 7th</button>
+<button class="btn btn-primary" @onclick="SetTuesday">Tuesday, November 8th</button>
+<button class="btn btn-primary" @onclick="SetWednesday">Wednesday, November 9th</button>
+<button class="btn btn-primary" @onclick="SetThursday">Thursday, November 10th</button>
+<br /> 
+<br /> 
+<button class="btn btn-primary" @onclick="SetFriday">Friday, November 11th</button>
+<br />
+<br />
+<p>Please select at what time you wolud like to attend</p>
+<button class="btn btn-primary" @onclick="Set7am">7:00 am</button>
+<button class="btn btn-primary" @onclick="Set12pm">12:00 pm</button>
+<button class="btn btn-primary" @onclick="Set6pm">6:00 pm</button>
+<br />
+<br />
+<!--Purchases the ticket-->
+<button class="btn btn-primary" @onclick="purchaseTickets">Make your purchase</button>
+
+@if(message != null)
+{
+    <p>@message</p>
+}
+
+
+@code {
+    //ExampleModel exampleModel = new ExampleModel();
+
+    //Allows user to input data
+    private InputText exampleModel = new InputText();
+    private EditContext? editContext;
+    protected override void OnInitialized()
+    {
+        editContext = new(exampleModel);
+    }
+
+
+    //Monday
+    int Nov7Time7a = 50;
+    int Nov7Time12p = 50;
+    int Nov7Time6p = 50;
+
+    //Tuesday
+    int Nov8Time7a = 50;
+    int Nov8Time12p = 50;
+    int Nov8Time6p = 50;
+
+    //Wednesday
+    int Nov9Time7a = 50;
+    int Nov9Time12p = 50;
+    int Nov9Time6p = 50;
+
+    //Thursday
+    int Nov10Time7a = 50;
+    int Nov10Time12p = 50;
+    int Nov10Time6p = 50;
+
+    //Friday
+    int Nov11Time7a = 50;
+    int Nov11Time12p = 50;
+    int Nov11Time6p = 50;
+
+    //Purchase dates
+    string Day = "";
+    string Time = "";
+
+    String? message = null;
+
+
+    //user info
+    string firstName = "";
+    string lastName = "";
+    string Address = "";
+    string Email = "";
+    string PhoneNumber = "";
+    string CreditCard = "";
+    
+
+    void SetMonday() 
+        { 
+            Day = "Monday"; 
+        }
+        void SetTuesday()
+        {
+
+            Day = "Tuesday";
+
+        }
+        void SetWednesday()
+        {
+
+            Day = "Wednesday";
+
+        }
+        void SetThursday()
+        {
+
+            Day = "Thursday";
+
+        }
+        void SetFriday()
+        {
+
+            Day = "Friday";
+
+        }
+
+
+        void Set7am()
+        {
+
+            Time = "7am";
+
+        }
+        void Set12pm()
+        {
+
+            Time = "12pm";
+
+        }
+        void Set6pm()
+        {
+
+            Time = "6pm";
+
+        }
+
+        void purchaseTickets()
+        {
+            if (Day == "Monday" && Time == "7am" && Nov7Time7a > 0)
+            {
+
+            message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov7Time7a--;
+
+            }
+            else if (Day == "Monday" && Time == "12pm" && Nov7Time12p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov7Time12p--;
+
+
+            }
+            else if (Day == "Monday" && Time == "6pm" && Nov7Time6p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov7Time6p--;
+
+
+            }
+            else if (Day == "Tuesday" && Time == "7am" && Nov8Time7a > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov8Time7a--;
+
+
+            }
+            else if (Day == "Tuesday" && Time == "12pm" && Nov8Time12p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov8Time12p--;
+
+
+            }
+            else if (Day == "Tuesday" && Time == "6pm" && Nov8Time6p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov8Time6p--;
+
+
+            }
+            else if (Day == "Wednesday" && Time == "7am" && Nov9Time7a > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov9Time7a--;
+
+
+            }
+            else if (Day == "Wednesday" && Time == "12pm" && Nov9Time12p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov9Time12p--;
+
+
+            }
+            else if (Day == "Wednesday" && Time == "6pm" && Nov9Time6p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov9Time6p--;
+
+
+            }
+            else if (Day == "Thursday" && Time == "7am" && Nov10Time7a > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov10Time7a--;
+
+
+            }
+            else if (Day == "Thursday" && Time == "12pm" && Nov10Time12p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+        Nov10Time12p--;
+
+
+            }
+            else if (Day == "Thursday" && Time == "6pm" && Nov10Time6p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov10Time6p--;
+
+
+            }
+            else if (Day == "Friday" && Time == "7am" && Nov11Time7a > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov11Time7a--;
+
+
+            }
+            else if (Day == "Friday" && Time == "12pm" && Nov11Time12p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov11Time12p--;
+
+
+            }
+            else if (Day == "Friday" && Time == "6pm" && Nov11Time6p > 0)
+            {
+
+                message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your tickets to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+                Nov11Time6p--;
+
+
+            }
+            else
+            {
+
+                message = "Our apologies we do not have any more available seats on that day, please feel free to purchase a different ticket if available";
+
+        }
+
+    }
+
+}

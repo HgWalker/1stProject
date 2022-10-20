@@ -1,0 +1,220 @@
+﻿@page "/shop"
+
+
+<PageTitle>Online Store</PageTitle>
+
+<h1>Online Store</h1>
+
+<p>Here is HW inc.’s online store, here we sell various dog related items for visitors to enjoy at home.</p>
+<br />
+<br />
+<p>Please enter your first and last names, a mailing address to receive the items you bought at, a valid credit card number to pay with, as well as both a phone number, and a email address for us to contact you in case necessary</p>
+
+<!--Allows user to input personal information-->
+<p>First Name:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="firstName"></InputText></EditForm>
+<br />
+<p>Last Name:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="lastName"></InputText></EditForm>
+<br />
+<p>Mailing Address:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="Address"></InputText></EditForm>
+<br />
+<p>Email:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="Email"></InputText></EditForm>
+<br />
+<p>Phone Number:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="PhoneNumber"></InputText></EditForm>
+<br />
+<p>Credit Card Number:</p>
+<EditForm EditContext="@editContext"> <InputText @bind-Value="CreditCard"></InputText></EditForm>
+
+<br />
+<br />
+<!--set which item they buy-->
+<p>Please select the item you would like to buy, (you may only purcase one at a time)</p>
+<button class="btn btn-primary" @onclick="SetFood">Dog food</button>
+<button class="btn btn-primary" @onclick="SetToyBox">Dog toy box</button>
+<button class="btn btn-primary" @onclick="SetToyBoxSqueak">Dog toy box (squeaky)</button>
+<button class="btn btn-primary" @onclick="SetCollar">Dog collar</button>
+<button class="btn btn-primary" @onclick="SetBowl">Dog bowl</button>
+<button class="btn btn-primary" @onclick="SetBrush">Dog brush</button>
+<button class="btn btn-primary" @onclick="SetCage">Dog cage</button>
+<br />
+<br />
+<button class="btn btn-primary" @onclick="SetCagePort">Dog cage (portable)</button>
+<br />
+<br />
+<!--Purchases the items-->
+<button class="btn btn-primary" @onclick="purchaseItems">Make your purchase</button>
+<br />
+@if (message != null)
+{
+    <p>@message</p>
+}
+<br />
+<br />
+<p>Check the table at the bottom to find each item's prices.</p>
+<br />
+<p>
+    Dog food 					|    $70.00         <br />
+    ————————————————<br />
+    Dog toy box 				|    $35.00         <br />
+    ————————————————<br />
+    Dog toy box (squeaky) 		|    $40.00         <br />
+    ————————————————<br />
+    Dog collar 					|    $10.00         <br />
+    ————————————————<br />
+    Dog bowl 					|    $16.00         <br />
+    ————————————————<br />
+    Dog brush 					|     $8.00         <br />
+    ————————————————<br />
+    Dog cage  					|    $30.00         <br />
+    ————————————————<br />
+    Dog cage (portable) 		|    $35.00         <br />
+</p>
+@code {
+
+    String? message = null;
+
+
+    //user info
+    string firstName = "";
+    string lastName = "";
+    string Address = "";
+    string Email = "";
+    string PhoneNumber = "";
+    string CreditCard = "";
+
+    //Items being sold
+    int Food = 0;
+    int ToyBox = 0;
+    int ToyBoxSqueak = 0;
+    int Collar = 0;
+    int Bowl = 0;
+    int Brush = 0;
+    int Cage = 0;
+    int CagePort = 0;
+
+    //Item Stock
+    int FoodNum = 100;
+    int ToyBoxNum = 100;
+    int ToyBoxSqueakNum = 100;
+    int CollarNum = 100;
+    int BowlNum = 100;
+    int BrushNum = 100;
+    int CageNum = 100;
+    int CagePortNum = 100;
+
+    //Allows user to input data
+    private InputText exampleModel = new InputText();
+    private EditContext? editContext;
+    protected override void OnInitialized()
+    {
+        editContext = new(exampleModel);
+    }
+
+    void SetFood()
+    {
+        Food++;
+
+    }
+    void SetToyBox()
+    {
+
+        ToyBox++;
+
+
+    }
+    void SetToyBoxSqueak()
+    {
+
+        ToyBoxSqueak++;
+
+
+    }
+    void SetCollar()
+    {
+
+        Collar++;
+
+
+    }
+    void SetBowl()
+    {
+
+        Bowl++;
+
+
+    }
+
+    void SetBrush()
+    {
+
+        Brush++;
+
+
+    }
+    void SetCage()
+    {
+
+        Cage++;
+
+
+    }
+    void SetCagePort()
+    {
+
+        CagePort++;
+
+
+    }
+
+    void purchaseItems()
+    {
+        if (Food > 0 && FoodNum > 0) {
+            message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your items to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+            FoodNum--;
+        }
+        else if (ToyBox > 0 && ToyBoxNum > 0) {
+            message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your items to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+            ToyBoxNum--;
+        }
+        else if (ToyBoxSqueak > 0 && ToyBoxSqueakNum > 0) {
+            message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your items to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+            ToyBoxSqueakNum--;
+        }
+        else if (Collar > 0 && CollarNum > 0) {
+            message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your items to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+            CollarNum--;
+        }
+        else if (Bowl > 0 && BowlNum > 0) {
+            message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your items to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+            BowlNum--;
+        }
+        else if (Brush > 0 && BrushNum > 0) {
+            message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your items to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+            BrushNum--;
+        }
+        else if (Cage > 0 && CageNum > 0) {
+            message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your items to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+            CageNum--;
+        }
+        else if (CagePort > 0 && CagePortNum > 0) {
+            message = "Congratulations " + firstName + " " + lastName + " on your purchase, after the transaction goes through we will send your items to " + Address + " if we need to contact you for any unexpected reasons we will email you at " + Email + " or call you at " + PhoneNumber + ".";
+
+            CagePortNum--;
+        }
+        else {
+            message = "Our apologies we no loger have any of that item in stock";
+        }
+    }
+
+}
